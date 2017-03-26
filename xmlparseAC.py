@@ -13,7 +13,7 @@ def convertXMLtoCsv(root):
         if len(sentence.getchildren()) > 1:
             aspectCategory = sentence.getchildren()[1].getchildren()[0].attrib['category']
             aspectPolarity = sentence.getchildren()[1].getchildren()[0].attrib['polarity']
-        ostring = id + "$"+ polarity + "$" + text + "$" + aspectCategory + "$" + aspectPolarity + "\n"
+        ostring = id + "#"+ polarity + "#" + text + "#" + aspectCategory + "#" + aspectPolarity + "\n"
         ofile.write(ostring) 
     ofile.close()
 
