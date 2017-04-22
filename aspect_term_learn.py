@@ -53,10 +53,28 @@ def read_parser_output(file_path):
     return parser_output
 
 def learn_rules(relations, aspect_terms):
-    return []
+    rules = {}
+    for relation in relations:
+        relation_data = relation.split('\t')
+        term = relation_data[1]
+        if term in aspect_terms:
+            rule = relation_data[5]
+            if rule in rules:
+                rules[rule] += 1
+            else:
+                rules[rule] = 1
+    return rules
+
+def update_rules(aspect_term_rules, sentence_rules):
+    for rule, count in sentence_rules.iteritems():
+        if rule in aspect_term_rules:
+            aspect_term_rules[rule] += count
+        else:
+            aspect_term_rules[rule] = count
+    return aspect_term_rules
 
 def main():
-    aspect_term_rules = set()
+    aspect_term_rules = {}
     sentences = get_sentences(sys.argv[1])
     list_sentences = []
     for sentence_data in sentences:
@@ -68,9 +86,10 @@ def main():
     for i in range(len(parser_output)):
         sentence_relations = parser_output[i]
         if len(sentence_relations) > 0 :
-            sentence_aspect_terms = sentences[1][1]
+            sentence_aspect_terms = sentences[i][1][1]
             sentence_rules = learn_rules(sentence_relations, sentence_aspect_terms)
-            aspect_term_rules.update(sentence_rules)
+            aspect_term_rules = update_rules(aspect_term_rules, sentence_rules)
+    return aspect_term_rules
 
 
 # Writes the aspect terms to file in Unicode format
@@ -82,4 +101,4 @@ def write_json(data, file_path):
 
 if __name__ == '__main__':
     aspect_term_rules = main()
-    #write_json(aspect_term_rules, "./aspect_term_rules.txt")
+    write_json(aspect_term_rules, "./aspect_term_rules.txt")
