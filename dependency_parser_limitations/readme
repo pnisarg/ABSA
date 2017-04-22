@@ -1,0 +1,2 @@
+every sentence in hindi.input.txt must end with '|' (hindi full stop)
+there should be no periods '.' in each sentence as it marks the end of line for the parser
