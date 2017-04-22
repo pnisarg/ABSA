@@ -4,9 +4,8 @@ import io
 import json
 import ast
 from itertools import islice
-from aspect_term_learn import write_sentences, write_json, read_parser_output
+from aspect_term_learn import write_sentences, write_json, read_parser_output, handle_special_cases
 
-threshold = 3
 
 def get_two_levels_up_pids(asp_term_jj_data, relations):
 	two_levels_up_pids = set()
@@ -92,7 +91,7 @@ def get_sentences(file_path):
 			line = line.rstrip()
 			if line:
 				sentence_data = line.split('#')
-				sentences.append((sentence_data[1], sentence_data[2]))
+				sentences.append((sentence_data[1], handle_special_cases(sentence_data[2])))
 	f.close()
 	return sentences
 
@@ -106,6 +105,9 @@ def load_rules(file_path):
 
 def apply_threshold(rules):
 	aspect_term_rules = {}
+	# calculating average
+	values = rules.values()
+	threshold = sum(values) / len(values)
 	for rule, count in rules.iteritems():
 		if count >= threshold:
 			aspect_term_rules[rule] = count
@@ -122,20 +124,18 @@ def main():
     write_sentences(output_sentences, "./parser/hindi.input.txt")
     os.popen("make -C ./parser/ hindi.output")
     parser_output = read_parser_output("./parser/hindi.output")
-    for i in range(len(parser_output)):
-		sentence_relations = parser_output[i]
-		if len(sentence_relations) > 0:
-			sentence_id = sentences[i][0]
-			relations = []
-			for relation in sentence_relations:
-				relation = relation.split('\t')
-				relations.append(relation)
-			sentence_aspect_terms_list = detect_terms(relations)
-			jj_list = get_jj_list(relations)
-			if len(jj_list) == 0:
-				jj_list = get_vb_list(relations)
-			sentence_aspect_terms = detect_quality(sentence_aspect_terms_list, jj_list, relations)
-			aspect_terms[sentence_id] = sentence_aspect_terms
+    len_sent = len(sentences)
+    len_parser = len(parser_output)
+    for i in range(len_parser):
+		relations = parser_output[i]
+		sentence_id = sentences[i][0]
+		sentence_aspect_terms_list = detect_terms(relations)
+		jj_list = get_jj_list(relations)
+		if len(jj_list) == 0:
+			jj_list = get_vb_list(relations)
+		sentence_aspect_terms = detect_quality(sentence_aspect_terms_list, jj_list, relations)
+		aspect_terms[sentence_id] = sentence_aspect_terms
+
     return aspect_terms
 
 if __name__ == '__main__':
