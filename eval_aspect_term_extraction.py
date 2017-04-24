@@ -2,7 +2,7 @@
 
 '''
 Run a task from the terminal::
->>> python eval_aspect_term_extraction.py predicted_aspect_terms_input_filename correct_aspect_terms_csv_filename 
+>>> python eval_aspect_term_extraction.py predicted_aspect_terms_input_filename.txt correct_aspect_terms_csv_filename 
 '''
 import csv
 import io
