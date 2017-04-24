@@ -11,9 +11,11 @@ def convertXMLtoCsv(root):
         polarity = sentence.attrib['polarity']
         text = sentence.getchildren()[0].text
         if len(sentence.getchildren()) > 1:
-            aspectCategory = sentence.getchildren()[1].getchildren()[0].attrib['category']
-            aspectPolarity = sentence.getchildren()[1].getchildren()[0].attrib['polarity']
-        ostring = id + "#"+ polarity + "#" + text + "#" + aspectCategory + "#" + aspectPolarity + "\n"
+            aspectCategories = sentence.find('aspectCategories')
+            for AC in aspectCategories.getchildren():
+                aspectCategory = aspectCategory + "," + AC.attrib['category']
+                aspectPolarity = aspectPolarity + "," + AC.attrib['polarity']
+        ostring = id + "#"+ polarity + "#" + text + "#" + aspectCategory[1:] + "#" + aspectPolarity[1:] + "\n"
         ofile.write(ostring) 
     ofile.close()
 
