@@ -12,11 +12,13 @@ def convertXMLtoCsv(root):
         id = sentence.attrib['id']
         text = sentence.getchildren()[0].text
         if len(sentence.getchildren()) > 1:
-            afrom = sentence.getchildren()[1].getchildren()[0].attrib['from']
-            ato = sentence.getchildren()[1].getchildren()[0].attrib['to']
-            apolarity = sentence.getchildren()[1].getchildren()[0].attrib['polarity']
-            aterm = sentence.getchildren()[1].getchildren()[0].attrib['term']
-        ostring = id + "#" + text + "#" + afrom + "#" + ato + "#" + apolarity + "#" + aterm + "\n"
+            aspectTerms = sentence.find('aspectTerms')
+            for aspectTerm in aspectTerms.getchildren():
+                afrom = afrom + ","+ aspectTerm.attrib['from']
+                ato = ato +","+aspectTerm.attrib['to']
+                apolarity = apolarity + "," +aspectTerm.attrib['polarity']
+                aterm = aterm +","+ aspectTerm.attrib['term']
+        ostring = id + "#" + text + "#" + afrom[1:] + "#" + ato[1:] + "#" + apolarity[1:] + "#" + aterm[1:] + "\n"
         ofile.write(ostring) 
     ofile.close()
 
