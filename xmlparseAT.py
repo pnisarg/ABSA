@@ -14,10 +14,10 @@ def convertXMLtoCsv(root):
         if len(sentence.getchildren()) > 1:
             aspectTerms = sentence.find('aspectTerms')
             for aspectTerm in aspectTerms.getchildren():
-                afrom = afrom + ","+ aspectTerm.attrib['from']
-                ato = ato +","+aspectTerm.attrib['to']
-                apolarity = apolarity + "," +aspectTerm.attrib['polarity']
-                aterm = aterm +","+ aspectTerm.attrib['term']
+                afrom = afrom + "&"+ aspectTerm.attrib['from']
+                ato = ato +"&"+aspectTerm.attrib['to']
+                apolarity = apolarity + "&" +aspectTerm.attrib['polarity']
+                aterm = aterm +"&"+ aspectTerm.attrib['term']
         ostring = id + "#" + text + "#" + afrom[1:] + "#" + ato[1:] + "#" + apolarity[1:] + "#" + aterm[1:] + "\n"
         ofile.write(ostring) 
     ofile.close()
