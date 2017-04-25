@@ -2,7 +2,7 @@
 
 '''
 Run a task from the terminal::
->>> python eval_new_2 predicted_aspect_terms_input_filename correct_aspect_terms_csv_filename 
+>>> python Eval_aspectTerm_new.py predicted_aspect_terms_input_filename correct_aspect_terms_csv_filename 
 This program skips the blank entries.
 '''
 import csv
