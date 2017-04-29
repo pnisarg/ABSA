@@ -50,6 +50,8 @@ def readParserOutput(file_path):
 
 def writeSentences(aspectTerms, parser_output, file_path):
     i = 0
+    print len(aspectTerms)
+    print len(parser_output)
     with codecs.open(file_path, 'w', encoding='utf8') as f:
         for sentence in parser_output:
             aspect_term_words = aspectTerms[i]
