@@ -1,0 +1,14 @@
+_T=2014-06-07_12:55:58_28876	 python demo.py
+_T=2014-06-07_12:56:04_28876	 du -sh *.pl
+_T=2014-06-07_12:56:05_28876	 du -sh *.pk
+_T=2014-06-07_12:56:13_28876	 du -sh ../pickle_files/*.pk
+_T=2014-06-07_12:56:53_28876	 vi hindi_onto_cats.txt
+_T=2014-06-07_12:56:58_28876	 vi getCats.py
+_T=2014-06-07_12:57:05_28876	 vi README
+_T=2014-06-07_12:58:57_28876	 mv ../pickle_files/* .
+_T=2014-06-07_12:59:02_28876	 mv ../pickle_files/* .
+_T=2014-06-07_12:59:09_28876	 python demo.py
+_T=2014-06-07_12:59:30_28876	 python getCats.py
+_T=2014-06-07_12:59:36_28876	 python getCats.py > hindi_onto_cats.txt
+_T=2014-06-07_13:24:02_29024	 python demo.py
+_T=2014-06-07_13:52:34_11537	 mv README README.md
