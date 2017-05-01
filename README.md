@@ -26,6 +26,10 @@ You can install project dependencies by running following command:
 ```sh
 $pip install -r requirements.txt
 ```
+
+### References
+- [Akhtar, Md Shad et al - Aspect based sentiment analysis in hindi: Resource creation and evaluation](http://www.lrec-conf.org/proceedings/lrec2016/pdf/698_Paper.pdf)
+
 ### Authors
 
 - [Nisarg Patel](https://github.com/pnisarg)
