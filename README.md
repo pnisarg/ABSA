@@ -26,15 +26,12 @@ You can install project dependencies by running following command:
 ```sh
 $pip install -r requirements.txt
 ```
----
-Authors
+### Authors
 
 - [Nisarg Patel](https://github.com/pnisarg)
 - [Nikhil Pachpande](https://github.com/pachpandenikhil)
 - [Abijith Sankar KN](https://github.com/abijithsankar)
 - [Atharva Kale](https://github.com/athkale)
 
-
----
-##### License
+### License
 MIT
