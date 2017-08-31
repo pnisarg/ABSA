@@ -1,6 +1,6 @@
 ## Aspect Based Sentiment Analysis for Hindi (ABSA)
 
-### problem statement 
+### Problem Statement 
 In recent years, millions of people are into social media networking, blogs and review sites, where they express opinions of various entities including movies, restaurants, products etc. These websites provide myriad amount of information that are not only useful to the creators of these entities, but also to their customers and rivals. The field of Aspect Based Sentiment Analysis (ABSA) collects and analyzes the opinions expressed on various aspects of these entities to make decisive recommendations. Rather than considering the overall polarity of a review expressed by a customer, it would be more helpful to analyze feature specific opinions, since people tend to have mixed opinions about them. Consider the sentence,
 
 > The ***pizza*** was delicious but the ***service*** was awful
